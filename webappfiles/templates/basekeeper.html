@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Job Portal</title>
+
+    <!-- bootstrap cdn-->
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"
+  ></script>
+    <style>.carousel-inner > .item > img { width:100%; height:300px; } </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scroll.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+    <link
+      type="text/css"
+      href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/basekeeper.css') }}">
+
+    <script src="https://kit.fontawesome.com/0c54b7787d.js"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100"> 
+
+  <header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1babc4;">
+        
+      <div class="container-fluid">
+        <img src="{{ url_for('static', filename='image/logo1.jpg') }} "style="width: 7%; padding: 3px;" alt="">
+        <a class="navbar-brand" href="{{ url_for('views.index') }}">Job Portal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{url_for('views.view_job')}}">View Job offers</a>
+            </li>
+
+            <li class="nav-item dropdown">
+
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Houseowner</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: linear-gradient(180deg, #39C0D1 0%, #CED4DB 100%)">
+                
+                {% if 'hoid' not in session %}
+                <li>
+                  <a class="dropdown-item text-white" href="{{url_for('auth.signup')}}">Sign-Up Form</a>
+                </li>
+
+                <li>
+                  <a  class="dropdown-item text-white" href="{{url_for('auth.login2')}}">Login</a>
+                </li>
+
+                {% else %}
+
+                <a class="btn btn-outline-dark text-white mx-1" href="{{ url_for('auth.logout2') }}">Logout</a>
+                <a class="btn btn-outline-dark mx-1" href="{{ url_for('views.profileho') }}">{{session["fname"]}}</a>
+                
+                {% endif %}
+              </ul>
+            </li>
+            <!-- end drop down 1-->
+            <!-- drop down 2-->
+            {% if 'hkid' not in session %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Housekeeper</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: linear-gradient(180deg, #39C0D1 0%, #CED4DB 100%)">
+                <li>
+                  <a class="dropdown-item text-white" href="{{url_for('views.registration')}}">Register Form</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item text-white" href="{{url_for('auth.login')}}">Login</a>
+                </li>
+
+                {% else %}
+
+                <a class="btn btn-outline-light mx-1" href="{{ url_for('auth.logout') }}">Logout</a>
+                <a class="btn btn-outline-light  mx-1" href="{{ url_for('views.profilehk') }}">{{session["fname"]}}</a>
+
+                <a class="btn btn-outline-dark mx-1" href="{{url_for('views.job_listing')}}">Job Listings Application</a>
+                <a class="btn btn-outline-dark mx-1" href="{{url_for('views.searchjob')}}">Search Job</a>
+                {% endif %}
+              </ul>
+
+            </li>
+
+            <!-- end of drop down2-->
+           
+          </ul>
+
+         
+
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+        
+      </div>
+    </div>
+    
+  </nav>
+
+  </header>
+
+      
+
+    <main class="container py-5">
+
+      {% with messages = get_flashed_messages(with_categories=true) %} 
+              {% if messages %} 
+                      {% for category, message in messages %} 
+                              {% if category == '' %}
+                                      <div class="alert alert-danger alert-dismissible fade show"
+                                      role="alert">
+                                      {{ message }}
+                                      <button type="button" class="btn-close" data-bs-dismiss="alert">
+                                      </button>
+                                      </div>
+                              {% else %}
+                                      <div class="alert alert-success alert-dismissible fade show"
+                                      role="alert">
+                                      {{ message }}
+                                      <button type="button" class="btn-close" data-bs-dismiss="alert">
+                                      </button>
+                                      </div>
+                              {% endif %} 
+                      {% endfor %} 
+              {% endif %} 
+      {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <footer class=" text-center text-white mt-auto"  style="background-color: #1babc4;">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-twitter"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+      
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: #00000033;">
+          © 2022 Job Portal
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+    <script
+    type="text/javascript"
+    src="{{url_for('static', filename='js/jquery-3.6.0.js')}}"
+  ></script>
+  <script
+    type="text/javascript"
+    src="{{url_for('static', filename='js/bootstrap.min.js')}}"
+  ></script>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      $("#txtpdate").datepicker({
+        dateFormat: "yy/mm/dd",
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Job</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+</head>
+<body class="d-flex flex-column min-vh-100" id="register" background="{{ url_for('static', filename='image/background.jpg') }}">
+
+    {% extends "baseowner.html" %}
+    {% block content %}
+
+    <h3>{{msg}}</h3>
+
+    <form action="/updatejob" method="post" class="mt-3">
+        <h3>Update Job</h3>
+
+        <div class="row col-md-5 mb-3">
+            <label for="txtprice" class="form-label">Salary</label>
+            <input type="text" class="form-control" name="txtprice"
+            id="txtprice">
+        </div>
+
+        <div class="row col-md-5 mb-3">
+        <label for="txtref" class="form-label">Job Ref</label>
+        <input type="text" class="form-control" name="txtref" id="txtref">
+        </div>
+
+       
+
+        <input type="submit" class="col-3 btn btn-primary" value="Update Job">
+    </form>
+    
+
+    {% endblock %}
+
+</body>
+</html>

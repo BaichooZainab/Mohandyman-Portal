@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log-in page</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+</head>
+
+  <body class="d-flex flex-column min-vh-100" id="register" background="{{ url_for('static', filename='image/background.jpg') }} "> 
+  
+  {% extends "basekeeper.html" %}
+  {% block content %}
+
+  {{msg}} {{title}}
+
+    <form  action="{{url_for('auth.login')}}" method="post" class="login-wrap my-5">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">log in</label>
+            <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab"></label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <div class="group">
+                        <label for="txtemail" class="label text-black fw-bold">Username or Email</label>
+                        <input id="txtemail" name="txtemail" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="txtpwd" class="label text-black fw-bold">Password</label>
+                        <input id="txtpwd" name="txtpwd" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign In">
+                    </div>
+
+                    <p class="text-center text-light mt-5 mb-0">Have not yet registered ? <a href="{{ url_for('auth.register') }}" class="fw-bold text-capitalize text-black"><u>Register here</u></a></p>
+
+                </div>
+
+                <div class="for-pwd-htm">
+                    <div class="group">
+                        <label for="user" class="label">Username or Email</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Reset Password">
+                    </div>
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+        {% endblock %}
+
+
+</body>
+</html>

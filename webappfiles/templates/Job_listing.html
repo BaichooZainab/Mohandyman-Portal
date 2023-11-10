@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job listing</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+    
+</head>
+<body class="d-flex flex-column min-vh-100" id="register" background="{{ url_for('static', filename='image/background.jpg') }}">
+
+    {% extends "basekeeper.html" %}
+    {% block content %}
+    
+    
+    <h1 class="text-center text-dark mt-4">** Job Listing **</h1>
+    <hr>
+    <div class="row text-center">
+    {% for row in rows %}
+    <div class="col-md-4 pt-5">
+    <div class="card mx-auto border border-2 border-info p-2"
+    style="width: 18rem;">
+    <img src="" class="card-img-top">
+    <div class="card-body">
+    <h5 class="card-title text-success">{{row.1}}</h5>
+    <p class="card-text"><b>Title:</b>{{row.3}}</p>
+    <p class="card-text"><b>Salary: </b>{{row.4}}</p>
+    <a href="{{ url_for('views.application') }}" class="btn btn-primary">Apply for Job</a>
+    </div>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+
+    {% endblock %}
+</body>
+</html>

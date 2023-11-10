@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign-Up page</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+
+  </head>
+
+  <body class="d-flex flex-column min-vh-100" id="register" background="{{ url_for('static', filename='image/background4.jpg') }}"> 
+  
+  {% extends "baseowner.html" %}
+{% block content %}
+
+
+      <section class="vh-50 gradient-custom">
+        <div class="container pt-5 h-50">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+              <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                <div class="card-body p-4 p-md-5">
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Sign-Up Form</h3>
+        
+        <form action="{{url_for('auth.signup')}}" method="post" class="container p-4" style="background-color: #1babc444;">
+          
+            <div>
+                <div class="col-md-6">
+                    <label for="txtfn" class="form-label text-black fw-bold">Firstname</label>
+                    <input type="text" class="form-control" id="txtfn" name="txtfn" placeholder="Enter first name">
+                </div>
+        
+                <div class="col-md-6">
+                    <label for="txtln"me class="form-label text-black fw-bold">Lastname</label>
+                    <input type="text" class="form-control" id="txtln" name="txtln"  placeholder="Enter Last name">
+                </div>
+        
+                <div class="col-md-4">
+                    <label for="txtmail" class="form-label text-black fw-bold ">Email address</label>
+                    <input type="email" class="form-control" id="txtmail" name="txtmail" placeholder="Enter Email">
+                </div>
+        
+                <div class="col-md-4">
+                    <label for="txtpassword" class="form-label text-black fw-bold">Password</label>
+                    <input type="password" class="form-control" id="txtpassword" name="txtpassword">
+                </div>
+        
+                <div class="col g-md-4">
+                  <label class="form-label text-black fw-bold" for="txtpass2">Repeat your password</label>
+                  <input type="password" id="txtpass2" name="txtpass2" class="form-control form-control-sm">
+              </div>
+
+
+                <div class="col-md-6">
+                    <label for="txtaddress" class="form-label text-black fw-bold ">Postal Address</label>
+                    <input type="text" class="form-control" id="txtaddress" name="txtaddress" placeholder="Enter postal address">
+                </div>
+        
+                <div class="col-md-6">
+                  <label class="form-label text-black fw-bold" for="txtdistrict">District</label>
+                  <input type="text" id="txtdistrict" name="txtdistrict" value="{{ request.form['txtdistrict'] }}" class="form-control"/>
+                </div>
+        
+                <div>
+                    <button type="submit" class="btn btn-info m-lg-2">Sign Up</button>
+                </div>
+            </div>
+        
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+
+</body>
+</html>

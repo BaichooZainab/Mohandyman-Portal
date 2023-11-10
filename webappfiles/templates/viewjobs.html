@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Jobs Available</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+</head>
+<body id="register" background="{{ url_for('static', filename='image/background.jpg') }} "  class="d-flex flex-column min-vh-100">
+
+    {% extends "basekeeper.html" %}
+    {% block content %}
+
+    <div class=" container mt-3">
+        <h3 style="background-color: rgb(94, 206, 235); text-align: center;">Job Offers</h3>
+        <table border="5" class="table table-dark table-hover">
+        <thead>
+        <th>id</th>
+        <th>Job_Description</th>
+        <th>Job_reference</th>
+        <th>Job_title</th>
+        <th>Salary</th>
+        <th>Closing date</th>
+        </thead>
+        {% for row in rows %}
+        <tr>
+        <td>{{row.0}}</td>
+        <td>{{row.1}}</td>
+        <td>{{row.2}}</td>
+        <td>{{row.3}}</td>
+        <td>{{row.4}}</td>
+        <td>{{row.5}}</td>
+        </tr>
+        {% endfor %}
+        </table>
+        </div>
+    
+
+    {% endblock %}
+
+</body>
+</html>

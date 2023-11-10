@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search for skills</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+</head>
+<body id="register" background="{{ url_for('static', filename='image/background.jpg') }} "  class="d-flex flex-column min-vh-100">
+
+
+    {% extends "baseowner.html" %}
+    {% block content %}
+
+
+    <form action="/searchskills" method="get" class="mt-5">
+        <h3>Search skills of housekeepers</h3>
+        <div class="row col-md-5 mb-5">
+        <label for="txtsk" class="form-label text-bg-dark fw-bold">Skills name</label>
+        <input type="text" class="form-control" name="txtsk"
+        id="txtsk">
+        </div>
+        <input type="submit" class="col-3 btn btn-primary mb-3"
+        value="Search Job">
+    </form>
+
+    {% if rows %}
+        <table border="5" class="table table-dark table-hover">
+            <thead>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Skills Id</th>
+            </thead>
+            {% for row in rows %}
+            <tr>
+                <td>{{row.2}}</td>
+                <td>{{row.3}}</td>
+                <td>{{row.12}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% elif request.args.get("txtsk") is none %}
+        <p></p>
+        {% else %}
+        <p>No {{request.args.get("txtsk")}} Skills available!</p>
+        {% endif %}
+
+    {% endblock %}
+
+</body>
+</html>

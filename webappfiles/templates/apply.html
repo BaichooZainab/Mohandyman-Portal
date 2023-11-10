@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+</head>
+<body id="register" background="{{ url_for('static', filename='image/background.jpg') }} "  class="d-flex flex-column min-vh-100">
+
+
+    {% extends "basekeeper.html" %}
+    {% block content %}
+
+<section class="vh-100">
+    <form action="{{ url_for('views.submit_app') }}" method="post">
+    <div class="contai py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <h3 class="mb-8">Apply for job</h3>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="txttitle">Job Title</label>
+                <input type="text" name = "txttitle" id="txttitle" class="form-control form-control-lg" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="txtdate">Interview Date</label>
+                <input type="text" name = "txtdate" id="txtdate" class="form-control form-control-lg" />
+              </div>
+
+              <button class="btn btn-primary btn-lg btn-block" id="btnProcess"  type="submit">Apply</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </section>
+  
+  {% endblock %}
+
+</body>
+</html>

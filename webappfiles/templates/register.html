@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registration page</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+
+  </head>
+
+<body class="d-flex flex-column min-vh-100" id="register" background="{{ url_for('static', filename='image/background2.jpg') }}"> 
+
+
+  {% extends "basekeeper.html" %}
+  {% block content %}
+
+  {{msg}} {{title}}
+
+      <section class="vh-50 gradient-custom">
+        <div class="container py-5 h-50">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+              <div class="card shadow-2-strong card-registration" style="border-radius: 20px;">
+                <div class="card-body p-4 p-md-5">
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+
+      <form action="{{url_for('auth.register')}}" method="post" class=" container p-4 row g-3" style="background-color: #1babc444; ">
+        <form class="row g-3">
+          <div class="col-md-12">
+            <h6 class="mb-2 pb-1 text-black fw-bold">Title </h6>
+              
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="txttitle" id="txttitle"
+                value="Mr" checked />
+              <label class="form-check-label" for="txttitle">Mr</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="txttitle" id="txttitle"
+                value="Mrs" />
+              <label class="form-check-label" for="txttitle">Mrs</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="txttitle" id="txttitle"
+                value="Miss" />
+              <label class="form-check-label" for="txttitle">Miss</label>
+            </div>
+
+          </div>
+          
+          <div class="col-md-6">
+            <label for="txtln" class="form-label text-black fw-bold">Lastname</label>
+            <input type="text" class="form-control" id="txtln" name="txtln" placeholder="Enter Last name">
+        </div>
+      
+        <div class="col-6">
+            <label for="txtfn" class="form-label text-black fw-bold">Firstname</label>
+            <input type="text" class="form-control" id="txtfn" name="txtfn" placeholder="Enter first name">
+        </div>
+      
+        <div class="col-md-10">
+            <label for="txtmail" class="form-label text-black fw-bold">Email address</label>
+            <input type="email" class="form-control" id="txtmail" name="txtmail" placeholder="Enter Email">
+        </div>
+      
+        <div class="col-md-6">
+            <label for="txtPassword" class="form-label text-black fw-bold">Password</label>
+            <input type="password" class="form-control" id="txtPassword" name="txtpassword">
+        </div>
+      
+        <div class="col g-md-4">
+            <label class="form-label text-black fw-bold" for="txtpass2">Repeat your password</label>
+            <input type="password" id="txtpass2" name="txtpass2" class="form-control form-control-sm">
+        </div>
+      
+          <div class="col-md-6">
+                  <label for="txtpostal" class="form-label text-black fw-bold">Postal Address</label>
+                  <input type="text" class="form-control" id="txtpostal" name="txtpostal" placeholder="Enter postal address">
+              </div>
+      
+              <div class="col-md-6">
+                  <label for="txtcontact" class="form-label text-black fw-bold ">Contact number (mobile)</label>
+                  <input type="text" class="form-control" id="txtcontact" name="txtcontact" placeholder="Enter mobile number">
+              </div>
+      
+              <div class="col-md-10">
+                  <label for="txtdob" class="form-label text-black fw-bold">Date of Birth</label>
+                  <input type="text" class="form-control" id="txtdob" name="txtdob">
+              </div>
+      
+              <div class="col-md-12">
+                  <label for="txtqualification" class="form-label text-black fw-bold">Highest Qualification Achieved </label>
+                  
+                  <select id="txtqualification" name="txtqualification" class="form-select">
+                  <option selected="">Choose...</option>
+                  <option>Tertiary</option>
+                  <option>Secondary</option>
+                  <option>None</option>
+                  </select>
+              </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label text-black fw-bold" for="txtfilecv">Upload your CV</label>
+            <input type="file" class="form-control" id="txtfilecv" name="txtfilecv">
+        </div>
+
+        <div class="mb-3">
+          <select id="txtskill" name="txtskill" class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+            <option>Select Skills</option>
+            {% for row in rows %}
+            <option value="{{row[0]}}">{{row[1]}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-check d-flex justify-content-center mb-5">
+            <input class="form-check-input me-2" type="checkbox" value="" id="txtstate" name="txtstate">
+            <label class="form-check-label" for="txtstate">
+            I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+            </label>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-info btn-block btn-lg gradient-custom-4 text-body">Register</button>
+        </div>
+
+        <p class="text-center text-black mt-5 mb-0">Have already an account? <a href="{{ url_for('auth.login') }}" class="fw-bold text-body"><u>Login here</u></a></p>
+
+ 
+
+</form>
+</form>
+
+</div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+
+
+      {% endblock %}
+
+</body>
+</html>

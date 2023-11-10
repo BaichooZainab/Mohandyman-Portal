@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Post Jobs</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon/favicon.ico') }}">
+
+  </head>
+
+<body class="d-flex flex-column min-vh-100" id="register" background="{{ url_for('static', filename='image/background.jpg') }} " > 
+
+  {% extends "baseowner.html" %}
+  {% block content %}
+  {{ msg }} {{title}}
+
+      <section class="vh-50 gradient-custom">
+        <div class="container py-5 h-50">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+              <div class="card shadow-2-strong card-registration" style="border-radius: 20px;">
+                <div class="card-body p-4 p-md-5">
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Post Jobs Form</h3>
+
+      <form action="/savedetails" enctype="multipart/form-data"  method="post" class=" container p-4 row g-3" style="background-color: #1babc444;">
+        
+          <div class="col-md-12">
+              <label for="txttitle" class="form-label text-black fw-bold">Job Title</label>
+              <input type="text" class="form-control" id="txttitle" name="txttitle" placeholder="Title name">
+          </div>
+      
+          <div class="col-md-6">
+            <label for="txtref" class="form-label text-black fw-bold">Job Reference</label>
+            <input type="text" class="form-control" id="txtref" name="txtref" placeholder="Job code">
+        </div>
+
+              <div class="col-md-6">
+                  <label for="txtdate" class="form-label text-black fw-bold ">Closing Date</label>
+                  <input type="text" class="form-control" id="txtdate" name="txtdate">
+              </div>
+
+              <div class="col-md-12">
+                <label for="txtprice" class="form-label text-black fw-bold ">Salary</label>
+                <input type="text" class="form-control" id="txtprice" name="txtprice">
+            </div>
+
+              <div class="col-md-12">
+                <label for="txtdes" class="form-label text-black fw-bold">Job Description</label>
+                <input type="text" class="form-control" id="txtdes" name="txtdes">
+            </div>
+
+            <button type="submit" class="addbtn">Add Job</button>
+</form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {% endblock %}
+
+</body>
+</html>
